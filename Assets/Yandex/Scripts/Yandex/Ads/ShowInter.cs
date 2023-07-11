@@ -11,7 +11,7 @@ public class ShowInter : MonoBehaviour, IEventReceiver<ShowInterAds>
     public AudioSource sorse;
     public Data data;
     private float scale = 1;
-    
+
     void Start()
     {
         Bridge.advertisement.interstitialStateChanged += Interstitial;
@@ -31,9 +31,9 @@ public class ShowInter : MonoBehaviour, IEventReceiver<ShowInterAds>
 
     void Awake()
     {
-        Showreklame();
+        ShowADS();
     }
-    public void Showreklame()
+    public void ShowADS()
     {
         var ignoreDelay = false;
         Bridge.advertisement.ShowInterstitial(ignoreDelay, success =>

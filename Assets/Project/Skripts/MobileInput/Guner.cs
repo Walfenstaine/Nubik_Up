@@ -15,7 +15,7 @@ public class Guner : MonoBehaviour
         float tim = Time.time - timer;
         if (tim < interval)
         {
-            Gun.rid.Shut();
+            Muwer.rid.Jump();
         }
     }
 }

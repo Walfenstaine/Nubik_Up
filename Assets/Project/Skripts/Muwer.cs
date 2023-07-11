@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class Muwer : MonoBehaviour {
+    public AudioClip jump, land;
     public Animator anim;
     public Vector2 rut;
 	public Vector3 muve;
@@ -9,8 +10,10 @@ public class Muwer : MonoBehaviour {
 	public Transform cam;
 	public float speed = 6.0F;
 	public float gravity = 20.0F;
-
-	private Vector3 moveDirection = Vector3.zero;
+    public float jumpSpeed = 10;
+    public LayerMask mask;
+    private Vector3 moveDirection = Vector3.zero;
+    private bool grunded = true;
     public float spid { get; set; }
     public CharacterController controller { get; set; }
 	public static Muwer rid {get; set;}
@@ -31,16 +34,42 @@ public class Muwer : MonoBehaviour {
 		controller = GetComponent<CharacterController>();
 	}
 
+    public void Jump()
+    {
+        if (grunded)
+        {
+            muve.y = jumpSpeed;
+            SoundPlayer.regit.sorse.PlayOneShot(jump);
+        }
+    }
 	void Update() {
-        if (controller.isGrounded)
+        anim.SetBool("Jump", !grunded);
+        Collider[] serch = Physics.OverlapSphere(anim.transform.position, 0.3f, mask);
+        if (serch.Length > 0)
+        {
+            if (controller.velocity.y < -2)
+            {
+                SoundPlayer.regit.sorse.PlayOneShot(land);
+            }
+            grunded = true;
+        }
+        else
+        {
+            grunded = false;
+        }
+        if (grunded)
         {
             if (controller.velocity.magnitude > 0.1f)
             {
                 anim.SetBool("Run", true);
                 anim.SetFloat("Speed", controller.velocity.magnitude / speed);
-                Vector3 rutnap = new Vector3(controller.velocity.x,0, controller.velocity.z);
-                anim.transform.rotation = Quaternion.Lerp(anim.transform.rotation, Quaternion.LookRotation(rutnap), 10 * Time.deltaTime);
-                transform.rotation = Quaternion.Lerp(transform.rotation, cam.rotation, 10 * Time.deltaTime);
+                if (muve.magnitude > 0)
+                {
+                    Vector3 rutnap = new Vector3(controller.velocity.x, 0, controller.velocity.z);
+                    anim.transform.rotation = Quaternion.Lerp(anim.transform.rotation, Quaternion.LookRotation(rutnap), 10 * Time.deltaTime);
+                    transform.rotation = Quaternion.Lerp(transform.rotation, cam.rotation, 10 * Time.deltaTime);
+                }
+                
             }
             else
             {
@@ -54,10 +83,11 @@ public class Muwer : MonoBehaviour {
         }
         else
         {
-            moveDirection.y -= gravity * Time.unscaledDeltaTime;
+            muve.y = 0;
+            moveDirection.y -= gravity * Time.deltaTime;
         }
-        cam.transform.Rotate(cam.up * rut.x);
-        cam.transform.position = Vector3.Lerp(cam.transform.position, transform.position, 5.5f * Time.deltaTime);
+        cam.transform.Rotate(cam.up * sensitivity * rut.x);
+        cam.transform.position = Vector3.Lerp(cam.transform.position, (transform.position + new Vector3(-controller.velocity.x/2, 0, -controller.velocity.z / 2)), 5.5f * Time.deltaTime);
         controller.Move(moveDirection * Time.unscaledDeltaTime);
     }
 }

@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using InstantGamesBridge;
 
 public class Interface : MonoBehaviour
 {
-    public ShowInter se;
-    public UnityEvent gameer, menue, gamover, skill, andLVL, nullBK;
+    public Scrollbar sense;
+    public Data data;
+    public UnityEvent gameer, menue, chekPoint;
     public static Interface rid { get; set; }
     void Awake()
     {
@@ -28,35 +30,21 @@ public class Interface : MonoBehaviour
     {
         Menu();
     }
-    public void NullBK()
-    {
-        Muwer.rid.muve = Vector2.zero;
-        Muwer.rid.rut = Vector2.zero;
-        nullBK.Invoke();
-        Time.timeScale = 0;
-        Lock(false);
-    }
+
     public void Menu()
     {
+        sense.value = data.sense;
         Muwer.rid.muve = Vector2.zero;
         Muwer.rid.rut = Vector2.zero;
         menue.Invoke();
         Time.timeScale = 0;
         Lock(false);
     }
-    public void AndLVL()
+    public void ChekPoint()
     {
         Muwer.rid.muve = Vector2.zero;
         Muwer.rid.rut = Vector2.zero;
-        andLVL.Invoke();
-        Time.timeScale = 0;
-        Lock(false);
-    }
-    public void Skill()
-    {
-        Muwer.rid.muve = Vector2.zero;
-        Muwer.rid.rut = Vector2.zero;
-        skill.Invoke();
+        chekPoint.Invoke();
         Time.timeScale = 0;
         Lock(false);
     }
@@ -66,19 +54,10 @@ public class Interface : MonoBehaviour
         gameer.Invoke();
         Time.timeScale = 1;
         Lock(true);
-
+        data.sense = sense.value;
+        Muwer.rid.sensitivity = sense.value;
     }
-    public void GameOver()
-    {
-        gamover.Invoke();
-        if (Time.timeScale > 0)
-        {
-            Time.timeScale = 0;
-            se.Showreklame();
-        }
-        Lock(false);
 
-    }
 
     void Lock(bool stateTemp)
     {

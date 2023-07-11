@@ -69,7 +69,7 @@ public class SaveAndLoad : MonoBehaviour
     void SetInitValue()
     {
         myData.record = 1;
-        myData.bulets = 20;
+        myData.sense = 0.5f;
         myData.soundOn = true;
     }
 

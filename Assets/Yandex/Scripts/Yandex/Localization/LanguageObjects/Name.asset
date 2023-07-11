@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2159556883534c42b8c9420514b57c5, type: 3}
   m_Name: Name
   m_EditorClassIdentifier: 
-  <en>k__BackingField: THE LABYRINTH OF DEATH
-  <ru>k__BackingField: "\u041B\u0410\u0411\u0418\u0420\u0418\u041D\u0422 \u0421\u041C\u0415\u0420\u0422\u0418"
+  <en>k__BackingField: Nubik, the way to heaven.
+  <ru>k__BackingField: "\u041D\u0443\u0431\u0438\u043A, \u043F\u0443\u0442\u044C
+    \u043A \u043D\u0435\u0431\u0435\u0441\u0430\u043C."
