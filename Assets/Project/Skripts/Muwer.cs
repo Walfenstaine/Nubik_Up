@@ -7,13 +7,10 @@ public class Muwer : MonoBehaviour {
 	public Vector3 muve;
 	public float sensitivity = 1.1f;
 	public Transform cam;
-	public float minimumY = -60F;
-	public float maximumY = 60F;
 	public float speed = 6.0F;
 	public float gravity = 20.0F;
 
 	private Vector3 moveDirection = Vector3.zero;
-	float rotationY = 0F;
     public float spid { get; set; }
     public CharacterController controller { get; set; }
 	public static Muwer rid {get; set;}
@@ -35,25 +32,15 @@ public class Muwer : MonoBehaviour {
 	}
 
 	void Update() {
-        if (cam != null)
-        {
-            //Time.timeScale = 0.1f + controller.velocity.magnitude / spid;
-            if (Time.timeScale > 0)
-            {
-                float rotationX = transform.localEulerAngles.y + rut.x * sensitivity;
-                rotationY += rut.y * sensitivity;
-                rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
-                cam.transform.localEulerAngles = new Vector3(-rotationY, 0, 0);
-                transform.localEulerAngles = new Vector3(0, rotationX, 0);
-            }
-        }
-
         if (controller.isGrounded)
         {
             if (controller.velocity.magnitude > 0.1f)
             {
                 anim.SetBool("Run", true);
                 anim.SetFloat("Speed", controller.velocity.magnitude / speed);
+                Vector3 rutnap = new Vector3(controller.velocity.x,0, controller.velocity.z);
+                anim.transform.rotation = Quaternion.Lerp(anim.transform.rotation, Quaternion.LookRotation(rutnap), 10 * Time.deltaTime);
+                transform.rotation = Quaternion.Lerp(transform.rotation, cam.rotation, 10 * Time.deltaTime);
             }
             else
             {
@@ -69,6 +56,8 @@ public class Muwer : MonoBehaviour {
         {
             moveDirection.y -= gravity * Time.unscaledDeltaTime;
         }
+        cam.transform.Rotate(cam.up * rut.x);
+        cam.transform.position = Vector3.Lerp(cam.transform.position, transform.position, 5.5f * Time.deltaTime);
         controller.Move(moveDirection * Time.unscaledDeltaTime);
     }
 }
