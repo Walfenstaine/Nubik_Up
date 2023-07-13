@@ -9,7 +9,7 @@ public class Interface : MonoBehaviour
 {
     public Scrollbar sense;
     public Data data;
-    public UnityEvent gameer, menue, chekPoint;
+    public UnityEvent gameer, menue, chekPoint, down;
     public static Interface rid { get; set; }
     void Awake()
     {
@@ -45,6 +45,16 @@ public class Interface : MonoBehaviour
         Muwer.rid.muve = Vector2.zero;
         Muwer.rid.rut = Vector2.zero;
         chekPoint.Invoke();
+        Time.timeScale = 0;
+        Lock(false);
+    }
+
+    public void Down()
+    {
+        Muwer.rid.enabled = false;
+        Muwer.rid.muve = Vector2.zero;
+        Muwer.rid.rut = Vector2.zero;
+        down.Invoke();
         Time.timeScale = 0;
         Lock(false);
     }

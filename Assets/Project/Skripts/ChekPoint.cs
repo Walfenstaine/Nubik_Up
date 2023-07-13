@@ -9,6 +9,7 @@ public class ChekPoint : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            Teleport.rid.position = Muwer.rid.transform.position;
             SaveAndLoad.Instance.Save();
             Interface.rid.ChekPoint();
             Destroy(gameObject);

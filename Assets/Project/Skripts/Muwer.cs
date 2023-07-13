@@ -85,6 +85,10 @@ public class Muwer : MonoBehaviour {
         {
             muve.y = 0;
             moveDirection.y -= gravity * Time.deltaTime;
+            if (controller.velocity.y < -20)
+            {
+                Interface.rid.Down();
+            }
         }
         cam.transform.Rotate(cam.up * sensitivity * rut.x);
         cam.transform.position = Vector3.Lerp(cam.transform.position, (transform.position + new Vector3(-controller.velocity.x/2, 0, -controller.velocity.z / 2)), 5.5f * Time.deltaTime);
