@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChekPoint : MonoBehaviour
 {
+    public Data data;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
