@@ -9,7 +9,7 @@ public class Interface : MonoBehaviour
 {
     public Scrollbar sense;
     public Data data;
-    public UnityEvent gameer, menue, chekPoint, down;
+    public UnityEvent gameer, menue, chekPoint, down, andlevel;
     public static Interface rid { get; set; }
     void Awake()
     {
@@ -34,16 +34,22 @@ public class Interface : MonoBehaviour
     public void Menu()
     {
         sense.value = data.sense;
-        Muwer.rid.muve = Vector2.zero;
-        Muwer.rid.rut = Vector2.zero;
+        if (Muwer.rid != null)
+        {
+            Muwer.rid.muve = Vector2.zero;
+            Muwer.rid.rut = Vector2.zero;
+        }
         menue.Invoke();
         Time.timeScale = 0;
         Lock(false);
     }
     public void ChekPoint()
     {
-        Muwer.rid.muve = Vector2.zero;
-        Muwer.rid.rut = Vector2.zero;
+        if (Muwer.rid != null)
+        {
+            Muwer.rid.muve = Vector2.zero;
+            Muwer.rid.rut = Vector2.zero;
+        }
         chekPoint.Invoke();
         Time.timeScale = 0;
         Lock(false);
@@ -51,9 +57,12 @@ public class Interface : MonoBehaviour
 
     public void Down()
     {
-        Muwer.rid.enabled = false;
-        Muwer.rid.muve = Vector2.zero;
-        Muwer.rid.rut = Vector2.zero;
+        if (Muwer.rid != null)
+        {
+            Muwer.rid.enabled = false;
+            Muwer.rid.muve = Vector2.zero;
+            Muwer.rid.rut = Vector2.zero;
+        }  
         down.Invoke();
         Time.timeScale = 0;
         Lock(false);
@@ -61,13 +70,28 @@ public class Interface : MonoBehaviour
 
     public void Game()
     {
+        if (Muwer.rid != null)
+        {
+            Muwer.rid.sensitivity = sense.value;
+            Muwer.rid.enabled = true;
+        }
         gameer.Invoke();
         Time.timeScale = 1;
         Lock(true);
         data.sense = sense.value;
-        Muwer.rid.sensitivity = sense.value;
+        
     }
-
+    public void Andlevel()
+    {
+        if (Muwer.rid != null)
+        {
+            Muwer.rid.muve = Vector2.zero;
+            Muwer.rid.rut = Vector2.zero;
+        }
+        andlevel.Invoke();
+        Time.timeScale = 0;
+        Lock(false);
+    }
 
     void Lock(bool stateTemp)
     {

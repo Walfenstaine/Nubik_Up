@@ -13,20 +13,24 @@ public class GameInterfase : MonoBehaviour
 
     void Update()
     {
-        if (Bridge.platform.language == "ru")
+        if (Muwer.rid != null)
         {
-            record.text = rec.ru + ": " + (data.record);
-            upp.text = up.ru + ": " + ((int)Muwer.rid.transform.position.y - 1);
-        }
-        else
-        {
-            record.text = rec.en + ": " + (data.record);
-            upp.text = up.en + ": " + ((int)Muwer.rid.transform.position.y - 1);
-        }
-        
-        if (((int)Muwer.rid.transform.position.y - 1) > data.record)
-        {
-            data.record = ((int)Muwer.rid.transform.position.y - 1);
+            if (Bridge.platform.language == "ru")
+            {
+                record.text = rec.ru + ": " + (data.record);
+                upp.text = up.ru + ": " + ((int)Muwer.rid.transform.position.y - 1);
+            }
+            else
+            {
+                upp.text = up.en + ": " + ((int)Muwer.rid.transform.position.y - 1);
+                record.text = rec.en + ": " + (data.record);
+
+            }
+
+            if (((int)Muwer.rid.transform.position.y - 1) > data.record)
+            {
+                data.record = ((int)Muwer.rid.transform.position.y - 1);
+            }
         }
     }
 }

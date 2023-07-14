@@ -20,6 +20,7 @@ public class Muwer : MonoBehaviour {
 
 	void Awake(){
         spid = speed;
+        cam = GameObject.FindGameObjectWithTag("Soul").transform;
 		if (rid == null) {
 			rid = this;
 		} else {
@@ -43,55 +44,64 @@ public class Muwer : MonoBehaviour {
         }
     }
 	void Update() {
-        anim.SetBool("Jump", !grunded);
-        Collider[] serch = Physics.OverlapSphere(anim.transform.position, 0.3f, mask);
-        if (serch.Length > 0)
+        if (Time.timeScale > 0)
         {
-            if (controller.velocity.y < -2)
+            anim.SetBool("Jump", !grunded);
+            Collider[] serch = Physics.OverlapSphere(anim.transform.position, 0.3f, mask);
+            if (serch.Length > 0)
             {
-                SoundPlayer.regit.sorse.PlayOneShot(land);
-            }
-            grunded = true;
-        }
-        else
-        {
-            grunded = false;
-        }
-        if (grunded)
-        {
-            if (controller.velocity.magnitude > 0.1f)
-            {
-                anim.SetBool("Run", true);
-                anim.SetFloat("Speed", controller.velocity.magnitude / speed);
-                if (muve.magnitude > 0)
+                if (controller.velocity.y < -2)
                 {
-                    Vector3 rutnap = new Vector3(controller.velocity.x, 0, controller.velocity.z);
-                    anim.transform.rotation = Quaternion.Lerp(anim.transform.rotation, Quaternion.LookRotation(rutnap), 10 * Time.deltaTime);
-                    transform.rotation = Quaternion.Lerp(transform.rotation, cam.rotation, 10 * Time.deltaTime);
+                    SoundPlayer.regit.sorse.PlayOneShot(land);
                 }
-                
+                grunded = true;
             }
             else
             {
-                anim.SetBool("Run", false);
-                anim.SetFloat("Speed", 1);
+                grunded = false;
             }
-            moveDirection = muve;
-            moveDirection = transform.TransformDirection(moveDirection);
-            moveDirection *= speed;
+            if (grunded)
+            {
+                if (controller.velocity.magnitude > 0.1f)
+                {
+                    anim.SetBool("Run", true);
+                    anim.SetFloat("Speed", controller.velocity.magnitude / speed);
+                    if (muve.magnitude > 0)
+                    {
+                        Vector3 rutnap = new Vector3(controller.velocity.x, 0, controller.velocity.z);
+                        anim.transform.rotation = Quaternion.Lerp(anim.transform.rotation, Quaternion.LookRotation(rutnap), 10 * Time.deltaTime);
+                        transform.rotation = Quaternion.Lerp(transform.rotation, cam.rotation, 10 * Time.deltaTime);
+                    }
 
+                }
+                else
+                {
+                    anim.SetBool("Run", false);
+                    anim.SetFloat("Speed", 1);
+                }
+                moveDirection = muve;
+                moveDirection = transform.TransformDirection(moveDirection);
+                moveDirection *= speed;
+
+            }
+            else
+            {
+                muve.y = 0;
+                moveDirection.y -= gravity * Time.deltaTime;
+                if (controller.velocity.y < -20)
+                {
+                    Interface.rid.Down();
+                }
+            }
+            cam.transform.Rotate(cam.up * sensitivity * rut.x);
+            cam.transform.position = Vector3.Lerp(cam.transform.position, (transform.position + new Vector3(-controller.velocity.x / 2, 0, -controller.velocity.z / 2)), 5.5f * Time.deltaTime);
+            controller.Move(moveDirection * Time.unscaledDeltaTime);
         }
         else
         {
-            muve.y = 0;
-            moveDirection.y -= gravity * Time.deltaTime;
-            if (controller.velocity.y < -20)
-            {
-                Interface.rid.Down();
-            }
+            grunded = true;
+            anim.SetBool("Run", false);
+            controller.Move(Vector3.zero);
         }
-        cam.transform.Rotate(cam.up * sensitivity * rut.x);
-        cam.transform.position = Vector3.Lerp(cam.transform.position, (transform.position + new Vector3(-controller.velocity.x/2, 0, -controller.velocity.z / 2)), 5.5f * Time.deltaTime);
-        controller.Move(moveDirection * Time.unscaledDeltaTime);
     }
 }

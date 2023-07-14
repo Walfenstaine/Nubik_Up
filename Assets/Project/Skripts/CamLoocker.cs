@@ -6,6 +6,9 @@ public class CamLoocker : MonoBehaviour
 {
     void Update()
     {
-        transform.LookAt(Muwer.rid.transform);
+        if (Muwer.rid != null)
+        {
+            transform.LookAt(Muwer.rid.transform);
+        }
     }
 }

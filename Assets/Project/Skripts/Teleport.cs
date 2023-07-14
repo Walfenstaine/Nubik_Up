@@ -5,6 +5,7 @@ using UnityEngine;
 public class Teleport : MonoBehaviour
 {
     public Vector3 position;
+    public GameObject playr;
     public static Teleport rid { get; set; }
     void Awake()
     {
@@ -32,9 +33,5 @@ public class Teleport : MonoBehaviour
     public void Port()
     {
         Muwer.rid.transform.position = position;
-    }
-    public void Vkl()
-    {
-        Muwer.rid.enabled = true;
     }
 }
