@@ -10,7 +10,7 @@ public class Load : MonoBehaviour, IEventReceiver<OnLoadIsComplete>
     
     public void OnEvent(OnLoadIsComplete e)
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(data.lvl);
     }
 
     void Start()

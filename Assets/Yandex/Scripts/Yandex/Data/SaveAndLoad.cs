@@ -71,6 +71,8 @@ public class SaveAndLoad : MonoBehaviour
         myData.record = 1;
         myData.sense = 0.5f;
         myData.soundOn = true;
+        myData.up = 0;
+        myData.lvl = "Scene1";
     }
 
 

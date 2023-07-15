@@ -72,8 +72,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a9eee89426fb84f95079c49617ecc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jump: {fileID: 8300000, guid: 1c977cdd26a59974e8dd36e641ddc9cc, type: 3}
   land: {fileID: 8300000, guid: 126946306fbbb6d47a21cd432991710e, type: 3}
+  jump:
+  - {fileID: 8300000, guid: 1c977cdd26a59974e8dd36e641ddc9cc, type: 3}
+  - {fileID: 8300000, guid: 39d4885b064b9fb45859bad62d475484, type: 3}
+  - {fileID: 8300000, guid: 5e34c1e9f6e7f414c816463a4788da8c, type: 3}
+  - {fileID: 8300000, guid: 9cc4343700df02e46b03cd4fc1479b3b, type: 3}
   anim: {fileID: 6185163690355825264}
   rut: {x: 0, y: 0}
   muve: {x: 0, y: 0, z: 0}

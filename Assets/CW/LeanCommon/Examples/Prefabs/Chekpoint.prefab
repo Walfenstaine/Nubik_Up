@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9018039755961261026}
   - component: {fileID: 192822013320919709}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Z
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   - component: {fileID: 4127304601223571896}
   - component: {fileID: 2319384471173351099}
   - component: {fileID: 3426501636047003732}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chekpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4697080872985908301, guid: 2aa1208a940a4b440b482d3f7ef89717, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6257189420670955428, guid: 2aa1208a940a4b440b482d3f7ef89717, type: 3}
       propertyPath: m_Materials.Array.data[0]

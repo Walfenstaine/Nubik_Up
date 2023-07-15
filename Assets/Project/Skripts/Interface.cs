@@ -7,6 +7,7 @@ using InstantGamesBridge;
 
 public class Interface : MonoBehaviour
 {
+    public bool fli;
     public Scrollbar sense;
     public Data data;
     public UnityEvent gameer, menue, chekPoint, down, andlevel;
@@ -34,22 +35,13 @@ public class Interface : MonoBehaviour
     public void Menu()
     {
         sense.value = data.sense;
-        if (Muwer.rid != null)
-        {
-            Muwer.rid.muve = Vector2.zero;
-            Muwer.rid.rut = Vector2.zero;
-        }
         menue.Invoke();
         Time.timeScale = 0;
         Lock(false);
     }
     public void ChekPoint()
     {
-        if (Muwer.rid != null)
-        {
-            Muwer.rid.muve = Vector2.zero;
-            Muwer.rid.rut = Vector2.zero;
-        }
+        Muwer.rid.controller.enabled = false;
         chekPoint.Invoke();
         Time.timeScale = 0;
         Lock(false);
@@ -57,24 +49,20 @@ public class Interface : MonoBehaviour
 
     public void Down()
     {
-        if (Muwer.rid != null)
+        if (fli)
         {
-            Muwer.rid.enabled = false;
-            Muwer.rid.muve = Vector2.zero;
-            Muwer.rid.rut = Vector2.zero;
-        }  
-        down.Invoke();
-        Time.timeScale = 0;
-        Lock(false);
+            Muwer.rid.controller.enabled = false;
+            down.Invoke();
+            Time.timeScale = 0;
+            Lock(false);
+        }
     }
 
     public void Game()
     {
-        if (Muwer.rid != null)
-        {
-            Muwer.rid.sensitivity = sense.value;
-            Muwer.rid.enabled = true;
-        }
+        fli = false;
+        Muwer.rid.sensitivity = sense.value;
+        Muwer.rid.controller.enabled = true;
         gameer.Invoke();
         Time.timeScale = 1;
         Lock(true);
@@ -83,11 +71,6 @@ public class Interface : MonoBehaviour
     }
     public void Andlevel()
     {
-        if (Muwer.rid != null)
-        {
-            Muwer.rid.muve = Vector2.zero;
-            Muwer.rid.rut = Vector2.zero;
-        }
         andlevel.Invoke();
         Time.timeScale = 0;
         Lock(false);
@@ -95,7 +78,9 @@ public class Interface : MonoBehaviour
 
     void Lock(bool stateTemp)
     {
-        if(stateTemp && (Bridge.device.type == InstantGamesBridge.Modules.Device.DeviceType.Desktop))
+        Muwer.rid.muve = Vector2.zero;
+        Muwer.rid.rut = Vector2.zero;
+        if (stateTemp && (Bridge.device.type == InstantGamesBridge.Modules.Device.DeviceType.Desktop))
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;

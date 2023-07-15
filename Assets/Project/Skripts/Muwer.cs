@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class Muwer : MonoBehaviour {
-    public AudioClip jump, land;
+    public AudioClip land;
+    public AudioClip[] jump;
     public Animator anim;
     public Vector2 rut;
 	public Vector3 muve;
@@ -37,14 +38,16 @@ public class Muwer : MonoBehaviour {
 
     public void Jump()
     {
+        Interface.rid.fli = true;
         if (grunded)
         {
             muve.y = jumpSpeed;
-            SoundPlayer.regit.sorse.PlayOneShot(jump);
+            int num = Random.Range(0, jump.Length);
+            SoundPlayer.regit.sorse.PlayOneShot(jump[num]);
         }
     }
 	void Update() {
-        if (Time.timeScale > 0)
+        if (controller.enabled)
         {
             anim.SetBool("Jump", !grunded);
             Collider[] serch = Physics.OverlapSphere(anim.transform.position, 0.3f, mask);
@@ -101,7 +104,7 @@ public class Muwer : MonoBehaviour {
         {
             grunded = true;
             anim.SetBool("Run", false);
-            controller.Move(Vector3.zero);
+            //controller.Move(Vector3.zero);
         }
     }
 }

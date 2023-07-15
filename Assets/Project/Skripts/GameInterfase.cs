@@ -15,21 +15,22 @@ public class GameInterfase : MonoBehaviour
     {
         if (Muwer.rid != null)
         {
+            int pos = ((int)Muwer.rid.transform.position.y - 1) + data.up;
             if (Bridge.platform.language == "ru")
             {
                 record.text = rec.ru + ": " + (data.record);
-                upp.text = up.ru + ": " + ((int)Muwer.rid.transform.position.y - 1);
+                upp.text = up.ru + ": " + pos;
             }
             else
             {
-                upp.text = up.en + ": " + ((int)Muwer.rid.transform.position.y - 1);
+                upp.text = up.en + ": " + pos;
                 record.text = rec.en + ": " + (data.record);
 
             }
 
-            if (((int)Muwer.rid.transform.position.y - 1) > data.record)
+            if (pos > data.record)
             {
-                data.record = ((int)Muwer.rid.transform.position.y - 1);
+                data.record = pos;
             }
         }
     }

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2159556883534c42b8c9420514b57c5, type: 3}
-  m_Name: "\u041F\u043E\u0440\u0442\u0430\u043B"
+  m_Name: "\u041D\u0430 \u0447\u0435\u043A\u043F\u043E\u0438\u043D\u0442"
   m_EditorClassIdentifier: 
-  <en>k__BackingField: Portal! Looks like this is my chance.
-  <ru>k__BackingField: "\u041F\u043E\u0440\u0442\u0430\u043B! \u041F\u043E\u0445\u043E\u0436\u0435,
-    \u044D\u0442\u043E \u043C\u043E\u0439 \u0448\u0430\u043D\u0441."
+  <en>k__BackingField: Return to the checkpoint
+  <ru>k__BackingField: "\u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F \u043D\u0430
+    \u043A\u043E\u043D\u0442\u0440\u043E\u043B\u044C\u043D\u0443\u044E \u0442\u043E\u0447\u043A\u0443"
