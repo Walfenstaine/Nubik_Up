@@ -2682,7 +2682,7 @@ RectTransform:
   - {fileID: 5135966574202271335}
   - {fileID: 8559143369344077250}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3835,7 +3835,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7504285050045864377
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4489,6 +4489,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3432502239131891924}
+    - target: {fileID: 2273246867012827594, guid: ab312f117d10f8b4a9ddafbcc98aa023, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 3419018833675680277, guid: ab312f117d10f8b4a9ddafbcc98aa023, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6084906
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419018833675680277, guid: ab312f117d10f8b4a9ddafbcc98aa023, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9220782
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419018833675680277, guid: ab312f117d10f8b4a9ddafbcc98aa023, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 3576991394379915177, guid: ab312f117d10f8b4a9ddafbcc98aa023, type: 3}
       propertyPath: m_Sprite
       value: 
