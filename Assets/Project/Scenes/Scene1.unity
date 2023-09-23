@@ -3545,6 +3545,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5513706585838236009, guid: cc3a34eb0491d4b49b902849a9746c9c, type: 3}
+      propertyPath: lvl
+      value: Scene2
+      objectReference: {fileID: 0}
     - target: {fileID: 6726285748627364047, guid: cc3a34eb0491d4b49b902849a9746c9c, type: 3}
       propertyPath: m_Name
       value: Interfase
