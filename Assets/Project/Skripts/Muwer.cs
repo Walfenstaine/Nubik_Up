@@ -93,7 +93,10 @@ public class Muwer : MonoBehaviour {
                 moveDirection.y -= gravity * Time.deltaTime;
                 if (controller.velocity.y < -20)
                 {
-                    Interface.rid.Down();
+                    if (Teleport.rid.position.y > 3)
+                    {
+                        Interface.rid.Down();
+                    }
                 }
             }
             cam.transform.Rotate(cam.up * sensitivity * rut.x);
